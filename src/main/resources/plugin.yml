@@ -1,0 +1,6 @@
+name: Duel
+main: pl.trollcraft.duel.Core
+version: 1.0-SNAPSHOT
+commands:
+  duel:
+    description: Duel commands.

@@ -1,0 +1,32 @@
+# You can use & for color codes.
+
+# %player$ | %kit% | %killer% | %top1/2/3%
+player:
+  join: "&a%player% &fdolaczyl do duelu."
+  left: "&a%player% &fopuscil duelu."
+  left-in-duel: "&a%player% &fuciekl z duelu."
+  already-ingame: "&cJestes juz w duelu."
+  not-ingame: "&cNie jestes w duelu"
+  death-msg: "&a&l%killer% pokonal %player% w duelu"
+  kit-select: "&aWybrales %kit%"
+  no-permissions: "&cNie masz do tego uprawnien!"
+
+
+arena:
+  full: "&cArena jest pelna!"
+  not-setup: "&cArena has not been set up properly."
+
+# %winner% | %time%
+game:
+  starting: "&aWalka sie zaczyna..."
+  start-countdown: "Walka sie zacznie za &a%time%&fs"
+
+# %arenaname% | %spawn%
+admin:
+  reloaded: "&cAll .yml has been reloaded! If you made changes on the arena, please reload/restart the server."
+  arena-created: "&a%arenaname% has been made! Make sure to set them up /duels settings %arenaname%"
+  arena-removed: "&c&l%arenaname% has been removed!"
+  arena-already-exists: "&c%arenaname% already exists!"
+  set-spawn: "&aSpawn for %spawn% has been set."
+  arena-not-exists: "&cArena with the name %arenaname% does not exists!"
+  location-not-set: "&cYou have not set the locations yet!"

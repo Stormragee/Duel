@@ -1,0 +1,14 @@
+# For Items: MATERIAL:AMOUNT:ITEM BYTES/DATA:ITEMS NAME:ENCHANEMENT-LVL (Enchanements is unlimited)
+# For Armor: MATERIAL:NAME:ENCHANEMENT-LVL (Enchanements is unlimited)
+default-kit: "default"
+kits:
+  default:
+    display: "DIAMOND_SWORD:1:0:&cStandard:&cTo bedzie rzez"
+    armor:
+      - "DIAMOND_HELMET:&cHelmet:PROTECTION_ENVIRONMENTAL-4"
+      - "DIAMOND_CHESTPLATE:&cChestplate:PROTECTION_ENVIRONMENTAL-4"
+      - "DIAMOND_LEGGINGS:&c&lLeggings:PROTECTION_ENVIRONMENTAL-4"
+      - "DIAMOND_BOOTS:&cNike:PROTECTION_ENVIRONMENTAL-4"
+    items:
+      - "DIAMOND_SWORD:1:0:&fThis is a Name:DAMAGE_ALL-1:DURABILITY-2"
+      - "DIAMOND:64:0:&fKamileq Diaxy"
