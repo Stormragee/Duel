@@ -92,25 +92,25 @@ public class DuelCommand implements CommandExecutor {
                 }
 
                 else if (args[0].equalsIgnoreCase("help")) {
-                    if (p.hasPermission("duel.player")) {
+                    if (p.hasPermission("pvp.gracz")) {
                         p.sendMessage(" ");
-                        p.sendMessage("/duels - Otworz pojedynki ");
-                        p.sendMessage("/duels leave - Opuść pojedynek");
-                        p.sendMessage("/duels join <arena> - Dolacz do pojedynku");
+                        p.sendMessage("/duel - Otworz pojedynki ");
+                        p.sendMessage("/duel leave - Opuść pojedynek");
+                        p.sendMessage("/duel join <arena> - Dolacz do pojedynku");
                     }
-                    if(p.hasPermission("duel.admin")){
-                        p.sendMessage("/duels reload - Reload all .yml");
-                        p.sendMessage("/duels addarena <arena> - Create an arena");
-                        p.sendMessage("/duels delarena <arena> - Delete an arena");
-                        p.sendMessage("/duels settings <arena> - Set an arena");
-                        p.sendMessage("/duels setspawn1 <arena> - Set playerone spawn");
-                        p.sendMessage("/duels setspawn2 <arena> - Set playertwo spawn");
-                        p.sendMessage("/duels setspawn <arena> - Set main spawn");
+                    if(p.hasPermission("pvp.admin")){
+                        p.sendMessage("/duel reload - Reload all .yml");
+                        p.sendMessage("/duel addarena <arena> - Create an arena");
+                        p.sendMessage("/duel delarena <arena> - Delete an arena");
+                        p.sendMessage("/duel settings <arena> - Set an arena");
+                        p.sendMessage("/duel setspawn1 <arena> - Set playerone spawn");
+                        p.sendMessage("/duel setspawn2 <arena> - Set playertwo spawn");
+                        p.sendMessage("/duel setspawn <arena> - Set main spawn");
                         p.sendMessage(" ");
                     }
                 }
                 else {
-                    p.sendMessage("§aUnknown command! /Duels help");
+                    p.sendMessage("§aNieznana komenda! /duel help");
                 }
 
             }
@@ -119,7 +119,7 @@ public class DuelCommand implements CommandExecutor {
             else if (args.length == 2) {
 
                 if (args[0].equalsIgnoreCase("addarena")) {
-                    if (!p.hasPermission("duels.admin")) {
+                    if (!p.hasPermission("pvp.admin")) {
                         p.sendMessage(Core.getInstance().msgFile.getNoPermissionsMsg());
                         return false;
                     }
@@ -143,7 +143,7 @@ public class DuelCommand implements CommandExecutor {
                 }
 
                 else if (args[0].equalsIgnoreCase("delarena")) {
-                    if (!p.hasPermission("duels.admin")) {
+                    if (!p.hasPermission("pvp.admin")) {
                         p.sendMessage(Core.getInstance().msgFile.getNoPermissionsMsg());
                         return false;
                     }
@@ -163,7 +163,7 @@ public class DuelCommand implements CommandExecutor {
                 }
 
                 else if (args[0].equalsIgnoreCase("setspawn")) {
-                    if (!p.hasPermission("duels.admin")) {
+                    if (!p.hasPermission("pvp.admin")) {
                         p.sendMessage(Core.getInstance().msgFile.getNoPermissionsMsg());
                         return false;
                     }
@@ -186,7 +186,7 @@ public class DuelCommand implements CommandExecutor {
                 }
 
                 else if (args[0].equalsIgnoreCase("setspawn1")) {
-                    if (!p.hasPermission("duels.admin")) {
+                    if (!p.hasPermission("pvp.admin")) {
                         p.sendMessage(Core.getInstance().msgFile.getNoPermissionsMsg());
                         return false;
                     }
@@ -209,7 +209,7 @@ public class DuelCommand implements CommandExecutor {
                 }
 
                 else if (args[0].equalsIgnoreCase("setspawn2")) {
-                    if (!p.hasPermission("duels.admin")) {
+                    if (!p.hasPermission("pvp.admin")) {
                         p.sendMessage(Core.getInstance().msgFile.getNoPermissionsMsg());
                         return false;
                     }
@@ -232,7 +232,7 @@ public class DuelCommand implements CommandExecutor {
                 }
 
                 else if (args[0].equals("join")) {
-                    if (!p.hasPermission("duels.players")) {
+                    if (!p.hasPermission("pvp.gracz")) {
                         p.sendMessage(Core.getInstance().msgFile.getNoPermissionsMsg());
                         return false;
                     }
@@ -250,7 +250,7 @@ public class DuelCommand implements CommandExecutor {
                 }
 
                 else if (args[0].equalsIgnoreCase("settings")) {
-                    if (!p.hasPermission("duels.admin")) {
+                    if (!p.hasPermission("pvp.gracz")) {
                         p.sendMessage(Core.getInstance().msgFile.getNoPermissionsMsg());
                         return false;
                     }

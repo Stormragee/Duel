@@ -20,7 +20,7 @@ public class CommandProccessEvents implements Listener {
                 return;
             }
 
-            if (!p.hasPermission("duels.admin")) {
+            if (!p.hasPermission("pvp.admin")) {
                 e.setCancelled(true);
             }
         }

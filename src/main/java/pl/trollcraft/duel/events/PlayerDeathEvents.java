@@ -4,8 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityDeathEvent;
-import org.bukkit.event.entity.PlayerDeathEvent;
+import pl.trollcraft.pvp.death.DeathEvent;
 import pl.trollcraft.duel.Core;
 import pl.trollcraft.duel.arena.GameState;
 import pl.trollcraft.duel.arena.Arena;
@@ -20,20 +19,18 @@ public class PlayerDeathEvents implements Listener {
     }
 
     @EventHandler
-    public void onPlayerDied(EntityDeathEvent e) {
-        if (e.getEntity() instanceof  Player) {
-            Player p = (Player) e.getEntity();
+    public void onPlayerDied(DeathEvent e) {
+        if (e.getVictim() != null) {
+            Player p = e.getVictim();
             Arena arena = plugin.arenaManager.getPlayersArena(p.getUniqueId());
 
             if (arena != null) {
                 if (arena.getPlayers().contains(p.getUniqueId())) {
                     if (arena.getState() == GameState.START) {
 
-                        e.getDrops().clear();
                         p.setHealth(p.getMaxHealth());
                         p.getInventory().clear();
                         p.getInventory().setArmorContents(null);
-                        e.setDroppedExp(0);
 
                         if (arena.getPlayers().get(0) == p.getUniqueId()) {
                             Player winner = Bukkit.getPlayer(arena.getPlayers().get(1));
@@ -67,16 +64,5 @@ public class PlayerDeathEvents implements Listener {
         }
     }
 
-    @EventHandler
-    public void onPlayerDiedMsg(PlayerDeathEvent e) {
-        Player p = e.getEntity();
-        Arena arena = plugin.arenaManager.getPlayersArena(p.getUniqueId());
-
-        if (arena != null) {
-            if (arena.getPlayers().contains(p.getUniqueId())) {
-                e.setDeathMessage(null);
-            }
-        }
-    }
 
 }

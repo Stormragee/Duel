@@ -46,6 +46,13 @@
             <version>1.8.8-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>pl.trollcraft.pvp</groupId>
+            <artifactId>pvp</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/pvp-1.0-SNAPSHOT.jar</systemPath>
+        </dependency>
     </dependencies>
 
 </project>
