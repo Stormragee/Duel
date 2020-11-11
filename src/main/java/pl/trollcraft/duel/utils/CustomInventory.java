@@ -58,7 +58,7 @@ public class CustomInventory {
         for (String kit : Core.getInstance().kitFile.getConfig().getConfigurationSection("kits").getKeys(false)) {
             String[] items = Core.getInstance().kitFile.getConfig().getString("kits." + kit + ".display").split(":");
 
-            ItemStack item = new ItemStack(Material.valueOf(items[0]), Integer.valueOf(items[1]), Byte.valueOf(items[2]));
+            ItemStack item = new ItemStack(Material.valueOf(items[0]), Integer.parseInt(items[1]), Byte.parseByte(items[2]));
             ItemMeta meta = item.getItemMeta();
             List<String> lore = new ArrayList<>();
 
@@ -91,10 +91,17 @@ public class CustomInventory {
             String arenaState = a.getState().toString();
             int playersJoin = a.getPlayers().size();
             int maxPlayers = a.getMaxPlayers();
-            if(arenaState.equals("START")) {arenaState = "§cZajeta";}
-            if(arenaState.equals("END")) {arenaState = "§cResetowanie";}
-            if(arenaState.equals("IDLE")) {arenaState = "§aWolna!";}
-            if(arenaState.equals("LOBBY")) {arenaState = "§eOczekiwanie";}
+            switch (arenaState){
+                case "START":
+                    arenaState = "§cZajeta";
+                case "END":
+                    arenaState = "§cResetowanie";
+                case "IDLE":
+                    arenaState = "§aWolna!";
+                case "LOBBY":
+                    arenaState = "§eOczekiwanie";
+
+            }
             inv.addItem(Core.getInstance().createItem(Material.GOLD_SWORD, "§7Arena: " + arenaName, Arrays.asList("", "§7Status: " + arenaState, "§7Graczy: §a" + playersJoin + "/" + maxPlayers, " ", "§7Kliknij aby dolaczyc!.")));
         }
 

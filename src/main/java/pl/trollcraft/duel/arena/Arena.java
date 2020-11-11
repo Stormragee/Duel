@@ -3,6 +3,8 @@ package pl.trollcraft.duel.arena;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
@@ -99,7 +101,7 @@ public class Arena {
                     p.setFoodLevel(20);
 
                     // Daj item do wybierania kita
-                    p.getInventory().addItem(Core.getInstance().createItem(Material.COMPASS, "§7Kity", Arrays.asList("Aby wybrać kit kilknij PPM.")));
+                    p.getInventory().addItem(Core.getInstance().createItem(Material.WATCH, "§7Kity", Arrays.asList("Aby wybrać kit kilknij PPM.")));
 
                     if (players.size() >= maxPlayers) {
                         broadcastMessage(Core.getInstance().msgFile.getGameStartingMsg());
@@ -128,7 +130,6 @@ public class Arena {
             }
 
             if (getState() == GameState.START) {
-                setState(GameState.LOBBY);
                 broadcastMessage(Core.getInstance().msgFile.getLeftInDuelMsg(p.getName()));
                 reset();
             }
@@ -167,7 +168,11 @@ public class Arena {
     public void reset() {
         for (int i = 0; i < players.size(); i++) {
             Player p = Bukkit.getPlayer(players.get(i));
-
+            p.setFireTicks(0);
+            p.getWorld().getEntities().stream().filter(Item.class::isInstance).forEach(Entity::remove);
+            for(PotionEffect effect : p.getActivePotionEffects()){
+                p.removePotionEffect(effect.getType());
+            }
             if (playerLoc.containsKey(p.getUniqueId())) {
                 p.teleport(playerLoc.get(p.getUniqueId()));
             }
@@ -188,6 +193,7 @@ public class Arena {
         playerArmor.clear();
         playerKit.clear();
         timer.reset();
+        setState(GameState.IDLE);
     }
 
     public void givePlayerKits() {
@@ -211,31 +217,6 @@ public class Arena {
             }
         }
     }
-    /*
-    public void addPlayerStats() {
-        for (int i = 0; i < players.size(); i++) {
-            Player p = Bukkit.getPlayer(players.get(i));
-
-            if (p.getName() == getWinner()) {
-                PlayerFile playerFile = new PlayerFile(p);
-
-                playerFile.addWin(1);
-                playerFile.addGamesPlayed(1);
-                playerFile.save();
-
-                if (Core.getInstance().storageFile.checkTop3(p, playerFile.getWin())) {
-                    Core.getInstance().storageFile.updateLeaderboards(p, playerFile.getWin());
-                }
-            }
-            else {
-                PlayerFile playerFile = new PlayerFile(p);
-
-                playerFile.addGamesPlayed(1);
-                playerFile.save();
-            }
-        }
-    }
-    */
     // Getters
     public String getArenaName() {
         return this.name;
@@ -263,14 +244,6 @@ public class Arena {
 
     public Location getPlayerTwoSpawn() {
         return playerTwoLoc;
-    }
-
-    public String getWinner() {
-        return  this.winner;
-    }
-
-    public int getMatchTime() {
-        return this.matchTime;
     }
 
     public int getMaxPlayers() {

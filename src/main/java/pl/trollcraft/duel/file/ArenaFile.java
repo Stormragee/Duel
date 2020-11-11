@@ -3,7 +3,6 @@ package pl.trollcraft.duel.file;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.entity.Pig;
 import pl.trollcraft.duel.Core;
 import pl.trollcraft.duel.arena.Arena;
 

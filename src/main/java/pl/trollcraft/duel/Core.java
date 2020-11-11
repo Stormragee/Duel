@@ -27,7 +27,6 @@ public class Core extends JavaPlugin {
     public ArenaFile arenaFile;
     public MsgFile msgFile;
     public KitFile kitFile;
-    //public StorageFile storageFile;
     public ArenaManager arenaManager;
 
     public Map<Player, Arena> playerSettings = new HashMap<>();
@@ -44,11 +43,7 @@ public class Core extends JavaPlugin {
         if (!arenaFile.isFileExists()) {
             arenaFile.createNewFile();
         }
-    /*
-        if (!storageFile.isExists()) {
-            storageFile.createNewFile();
-        }
-    */
+
         arenaManager = new ArenaManager(this);
         arenaManager.loadAllArena();
 

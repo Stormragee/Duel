@@ -53,31 +53,7 @@ public class KitFile {
     public void givePlayerKit(Player p ,String kitname) {
 
         if (getConfig().getConfigurationSection("kits." + kitname) != null) {
-            // ITEMS
-            List<String> list = config.getStringList("kits." + kitname + ".items");
-
-            for (String kits : list) {
-                String[] kit = kits.split(":");
-
-                ItemStack item = new ItemStack(Material.valueOf(kit[0]), Integer.valueOf(kit[1]), Byte.valueOf(kit[2]));
-                ItemMeta meta = item.getItemMeta();
-
-                meta.setDisplayName(kit[3].replace("&", "§"));
-
-                if (kit.length > 4) {
-                    for (int i = 4; i < kit.length; i++) {
-                        String[] encha = kit[i].split("-");
-
-                        meta.addEnchant(Enchantment.getByName(encha[0]), Integer.valueOf(encha[1]), false);
-                    }
-                }
-
-                item.setItemMeta(meta);
-
-                p.getInventory().addItem(item);
-            }
-
-            // Armor
+            //Armor
             List<String> armors = config.getStringList("kits." + kitname + ".armor");
 
             for (String armor : armors) {
@@ -107,6 +83,29 @@ public class KitFile {
                 } else if (items[0].contains("BOOTS")) {
                     p.getInventory().setBoots(item);
                 }
+            }
+            // ITEMS
+            List<String> list = config.getStringList("kits." + kitname + ".items");
+
+            for (String kits : list) {
+                String[] kit = kits.split(":");
+
+                ItemStack item = new ItemStack(Material.valueOf(kit[0]), Integer.valueOf(kit[1]), Byte.valueOf(kit[2]));
+                ItemMeta meta = item.getItemMeta();
+
+                meta.setDisplayName(kit[3].replace("&", "§"));
+
+                if (kit.length > 4) {
+                    for (int i = 4; i < kit.length; i++) {
+                        String[] encha = kit[i].split("-");
+
+                        meta.addEnchant(Enchantment.getByName(encha[0]), Integer.parseInt(encha[1]), false);
+                    }
+                }
+
+                item.setItemMeta(meta);
+
+                p.getInventory().addItem(item);
             }
         }
 

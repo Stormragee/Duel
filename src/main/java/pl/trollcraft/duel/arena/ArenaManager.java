@@ -10,7 +10,7 @@ import java.util.UUID;
 public class ArenaManager {
 
 
-    private List<Arena> arenas = new ArrayList<Arena>();
+    private List<Arena> arenas = new ArrayList<>();
 
     private final Core plugin;
 

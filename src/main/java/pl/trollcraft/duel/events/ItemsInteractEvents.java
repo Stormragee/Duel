@@ -26,7 +26,7 @@ public class ItemsInteractEvents implements Listener {
                     if (arena.getPlayers().contains(p.getUniqueId())) {
                         if (arena.getState() == GameState.IDLE || arena.getState() == GameState.LOBBY) {
                             if (item != null && item.getType() != Material.AIR) {
-                                if (item.getType() == Material.COMPASS) {
+                                if (item.getType() == Material.WATCH) {
                                     CustomInventory.getKitGUI(p);
                                 }
                             }
