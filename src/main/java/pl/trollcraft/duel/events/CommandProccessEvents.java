@@ -16,7 +16,7 @@ public class CommandProccessEvents implements Listener {
         Arena arena = Core.getInstance().arenaManager.getPlayersArena(p.getUniqueId());
 
         if (arena != null) {
-            if (msg.startsWith("duel")) {
+            if (msg.startsWith("/duel")) {
                 return;
             }
 
