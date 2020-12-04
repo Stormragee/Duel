@@ -7,6 +7,7 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import pl.trollcraft.duel.Core;
 import pl.trollcraft.duel.arena.Arena;
 import pl.trollcraft.duel.arena.GameState;
+import pl.trollcraft.pvp.clans.event.ClanMembersDamagePreventEvent;
 
 public class PlayerDamageEvents implements Listener {
 
@@ -28,6 +29,13 @@ public class PlayerDamageEvents implements Listener {
                 }
             }
 
+        }
+    }
+    @EventHandler
+    public void onClanPlayerDamage(ClanMembersDamagePreventEvent e){
+        Arena arena = plugin.arenaManager.getPlayersArena(e.getDamager().getUniqueId());
+        if (arena != null) {
+            e.setCancelled(true);
         }
     }
 

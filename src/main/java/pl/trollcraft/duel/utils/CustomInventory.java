@@ -8,6 +8,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import pl.trollcraft.duel.Core;
 import pl.trollcraft.duel.arena.Arena;
+import pl.trollcraft.pvp.help.gui.GUI;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -52,9 +53,8 @@ public class CustomInventory {
     }
 
     public static void getKitGUI(Player p) {
-        Inventory inv = Bukkit.createInventory(null, 45, "§7Kity");
-
-
+        GUI gui = new GUI(45,"§7Kity");
+        int j = 0;
         for (String kit : Core.getInstance().kitFile.getConfig().getConfigurationSection("kits").getKeys(false)) {
             String[] items = Core.getInstance().kitFile.getConfig().getString("kits." + kit + ".display").split(":");
 
@@ -76,16 +76,16 @@ public class CustomInventory {
 
             item.setItemMeta(meta);
 
-            inv.addItem(item);
-
+            gui.addItem(j,item,e -> {});
+            j++;
         }
 
-        p.openInventory(inv);
+        gui.open(p);
     }
 
     public static void getArenaListGUI(Player p) {
-        Inventory inv = Bukkit.createInventory(null, 45, "§a§lPojedynki");
-
+        GUI gui = new GUI( 45, "§a§lPojedynki");
+        int k = 0;
         for (Arena a : Core.getInstance().arenaManager.getAllArena()) {
             String arenaName = a.getArenaName();
             String arenaState = a.getState().toString();
@@ -102,10 +102,11 @@ public class CustomInventory {
                     arenaState = "§eOczekiwanie";
 
             }
-            inv.addItem(Core.getInstance().createItem(Material.GOLD_SWORD, "§7Arena: " + arenaName, Arrays.asList("", "§7Status: " + arenaState, "§7Graczy: §a" + playersJoin + "/" + maxPlayers, " ", "§7Kliknij aby dolaczyc!.")));
+            gui.addItem(k,Core.getInstance().createItem(Material.GOLD_SWORD, "§7Arena: " + arenaName, Arrays.asList("", "§7Status: " + arenaState, "§7Graczy: §a" + playersJoin + "/" + maxPlayers, " ", "§7Kliknij aby dolaczyc!.")),e->{});
+            k++;
         }
 
-        p.openInventory(inv);
+        gui.open(p);
     }
 
 }

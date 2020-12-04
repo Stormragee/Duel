@@ -93,7 +93,9 @@ public class Arena {
                     playerArmor.put(p.getUniqueId(), p.getInventory().getArmorContents());
 
                     broadcastMessage(Core.getInstance().msgFile.getJoinMsg(p.getName()));
-
+                    for(PotionEffect effect : p.getActivePotionEffects()){
+                        p.removePotionEffect(effect.getType());
+                    }
                     p.getInventory().setArmorContents(null);
                     p.getInventory().clear();
                     p.teleport(spawnLoc);
